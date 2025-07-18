@@ -105,3 +105,76 @@ final_mae = {model: np.mean(errors) if errors else None for model, errors in mod
 print("Model MAE Comparison for June 2025:\n")
 for model, mae in final_mae.items():
     print(f"{model}: {mae:.2f}" if mae is not None else f"{model}: No predictions")
+
+PROJECT NAME: Forecasting and Model Evaluation System
+
+DESCRIPTION:
+------------
+This project predicts metric values using 10 different time series and machine learning models 
+and compares them using MAE (Mean Absolute Error). 
+It uses SQL Server as a data source and generates SHAP value visualizations using Streamlit.
+
+REQUIREMENTS:
+-------------
+- Python 3.8 or above
+- SQL Server (ODBC connection)
+- Internet connection (for installing packages)
+
+SETUP INSTRUCTIONS:
+-------------------
+
+1. Clone or Download the Project
+--------------------------------
+- Clone the repo using Git:
+    git clone <your-repo-url>
+  OR
+- Download and extract the zip file.
+
+2. Create Virtual Environment (Optional but Recommended)
+--------------------------------------------------------
+- Windows:
+    python -m venv venv
+    venv\Scripts\activate
+
+- Linux/Mac:
+    python3 -m venv venv
+    source venv/bin/activate
+
+3. Install Required Python Packages
+-----------------------------------
+- Run the following command in the project root folder:
+    pip install -r requirements.txt
+
+4. Set Up Database Connection
+-----------------------------
+- Make sure you have SQL Server installed and running.
+- This app uses Windows Authentication. Update your connection if needed.
+
+Connection string used in the code:
+conn = pyodbc.connect(
+'DRIVER={ODBC Driver 17 for SQL Server};'
+'SERVER=GBRMSD500003053\FUS_SQLVIRT_Dev;'
+'DATABASE=FUSION_MI_DEV;'
+'Trusted_Connection=yes;'
+)
+
+markdown
+Copy
+Edit
+
+5. Run the Streamlit App
+------------------------
+- From the terminal, navigate to the project folder and run:
+    streamlit run app.py
+
+6. Expected Output
+------------------
+- The app allows you to select a metric.
+- It predicts the value for 1st June 2025 using the past 5 months.
+- It shows the predictions from 10 models and the MAE for each.
+- SHAP waterfall plots visualize feature contributions.
+
+TROUBLESHOOTING:
+----------------
+- If you face a connection error, verify your SQL Server and ODBC configuration.
+- If SHAP plots don’t display, ensure `matplotlib` and `shap` are installed.
